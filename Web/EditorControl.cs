@@ -599,7 +599,9 @@ namespace DNNConnect.CKEditorProvider.Web
         /// <returns>The container source path</returns>
         private string GetContainerSource()
         {
-            var containerSource = _portalSettings.ActiveTab.ContainerSrc ?? _portalSettings.DefaultPortalContainer;
+            var containerSource = _portalSettings.ActiveTab.ContainerSrc;
+            if (string.IsNullOrEmpty(containerSource))
+                containerSource = _portalSettings.DefaultPortalContainer;
             containerSource = ResolveSourcePath(containerSource);
             return containerSource;
         }
@@ -608,7 +610,9 @@ namespace DNNConnect.CKEditorProvider.Web
         /// <returns>The skin source path</returns>
         private string GetSkinSource()
         {
-            var skinSource = _portalSettings.ActiveTab.SkinSrc ?? _portalSettings.DefaultPortalSkin;
+            var skinSource = _portalSettings.ActiveTab.SkinSrc;
+            if (string.IsNullOrEmpty(skinSource))
+                skinSource = _portalSettings.DefaultPortalSkin;
             skinSource = ResolveSourcePath(skinSource);
             return skinSource;
         }
